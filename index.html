@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Toggle Text Blocks</title>
+  <style>
+    .block { display: none; }
+    .block.active { display: block; }
+    button { margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div id="textA" class="block active">
+    <h2>Text Block A</h2>
+    <p>This is the first block of text. Visible by default.</p>
+  </div>
 
+  <div id="textB" class="block">
+    <h2>Text Block B</h2>
+    <p>This is the second block of text. Hidden by default.</p>
+  </div>
+
+  <button id="toggleBtn" aria-pressed="false">Show Block B</button>
+
+  <script>
+    const a = document.getElementById('textA');
+    const b = document.getElementById('textB');
+    const btn = document.getElementById('toggleBtn');
+
+    btn.addEventListener('click', () => {
+      const showingA = a.classList.contains('active');
+      if (showingA) {
+        a.classList.remove('active');
+        b.classList.add('active');
+        btn.textContent = 'Show Block A';
+        btn.setAttribute('aria-pressed', 'true');
+      } else {
+        b.classList.remove('active');
+        a.classList.add('active');
+        btn.textContent = 'Show Block B';
+        btn.setAttribute('aria-pressed', 'false');
+      }
+    });
+  </script>
+</body>
+</html>
